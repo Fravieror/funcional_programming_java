@@ -71,6 +71,25 @@ public class streams {
 
         System.out.println(courses.stream().sorted(comparingByNoOfstudentsDecreasing).collect(Collectors.toList()));
 
+        System.out.println(courses.stream().
+                sorted(comparingByNoOfstudentsDecreasing).
+                limit(5).
+                collect(Collectors.toList()));
 
+        System.out.println(courses.stream().
+                sorted(comparingByNoOfstudentsDecreasing).
+                skip(3). // skip the first tree results
+                collect(Collectors.toList()));
+
+
+        System.out.println(courses.stream().
+                sorted(comparingByNoOfstudentsDecreasing).
+                takeWhile(o -> courses.equals("java")). // It prints elements indicated
+                        collect(Collectors.toList()));
+
+        System.out.println(courses.stream().
+                sorted(comparingByNoOfstudentsDecreasing).
+                dropWhile(o -> courses.equals("java")). // It not prints elements indicated
+                        collect(Collectors.toList()));
     }
 }
