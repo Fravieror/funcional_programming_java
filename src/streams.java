@@ -66,5 +66,11 @@ public class streams {
 
     private static void sortingStringsFunctional(List<String> courses) {
         courses.stream().sorted(Comparator.comparing(str -> str.length())).forEach(System.out::println);
+        Comparator comparingByNoOfstudentsIncreasing = Comparator.comparing(o -> o.equals(""));
+        Comparator comparingByNoOfstudentsDecreasing = Comparator.comparing(o -> o.equals("")).reversed();
+
+        System.out.println(courses.stream().sorted(comparingByNoOfstudentsDecreasing).collect(Collectors.toList()));
+
+
     }
 }
