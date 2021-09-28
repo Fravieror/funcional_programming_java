@@ -14,8 +14,8 @@ public class streams {
     //        int sum = addListStructured(numbers);
         int sum = addListFunctional(numbers);
         sortedDistinctListFunctional(numbers);
-        sortingStringsFunctional(courses);
         System.out.println(sum);
+        sortingStringsFunctional(courses);
     }
 
     private static List<Integer> doubleList(List<Integer> numbers) {
@@ -91,5 +91,29 @@ public class streams {
                 sorted(comparingByNoOfstudentsDecreasing).
                 dropWhile(o -> courses.equals("java")). // It not prints elements indicated
                         collect(Collectors.toList()));
+
+        System.out.println(courses.stream()
+                .filter(s -> s == "Java")
+                .min(comparingByNoOfstudentsDecreasing)
+                .orElse("other value")); // in case of it does not find some element this will be printed.
+
+        System.out.println(courses.stream()
+                .filter(s -> s == "Java")
+                .mapToInt(value -> value.length())
+                .sum());
+
+        System.out.println(courses.stream()
+                .filter(s -> s == "Java")
+                .mapToInt(value -> value.length())
+                .average());
+
+        System.out.println(courses.stream()
+                .filter(s -> s == "Java")
+                .mapToInt(value -> value.length())
+                .count());
+
+
+
+
     }
 }
