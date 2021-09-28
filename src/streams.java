@@ -1,5 +1,7 @@
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class streams {
@@ -16,6 +18,7 @@ public class streams {
         sortedDistinctListFunctional(numbers);
         System.out.println(sum);
         sortingStringsFunctional(courses);
+        sortingByCategory();
     }
 
     private static List<Integer> doubleList(List<Integer> numbers) {
@@ -111,8 +114,42 @@ public class streams {
                 .filter(s -> s == "Java")
                 .mapToInt(value -> value.length())
                 .count());
+    }
+
+    private static void sortingByCategory(){
+        List<Game> games = new ArrayList<>();
+        games.add(new Game(200, "call of duty", "shooter"));
+        games.add(new Game(180, "fortnite", "shooter"));
+        games.add(new Game(200, "fifa21", "sports"));
+        games.add(new Game(50, "for honor", "fighting"));
+        games.add(new Game(150, "F1", "sports"));
+        games.add(new Game(170, "UFC", "sports"));
+        games.add(new Game(190, "Red redemption 2", "RPG"));
 
 
+
+        System.out.println(games
+                .stream()
+                .collect(Collectors
+                        .groupingBy(Game::getCategory)));
+
+        System.out.println(games
+                .stream()
+                .collect(Collectors
+                        .groupingBy(Game::getCategory, Collectors
+                                .mapping(Game::getName, Collectors.toList())))); // It brings the name of each game ordered.
+
+        System.out.println(games
+                .stream()
+                .collect(Collectors
+                        .groupingBy(Game::getCategory, Collectors.counting()))); // It says the number of game in each category
+
+        System.out.println(games
+                .stream()
+                .collect(Collectors
+                        .groupingBy(Game::getCategory, Collectors
+                                .maxBy(Comparator.comparing(Game::getCost))))); // It get the mos value game for each category
+                                       // If various games have the same cost it brings the first
 
 
     }
