@@ -3,6 +3,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import java.util.stream.LongStream;
 
 public class streams {
     public static void main(String[] args){
@@ -20,6 +21,7 @@ public class streams {
         sortingStringsFunctional(courses);
         sortingByCategory();
         joiningStringArray();
+        parallelStream();
     }
 
     private static List<Integer> doubleList(List<Integer> numbers) {
@@ -157,5 +159,17 @@ public class streams {
     private static void joiningStringArray(){
         List<String> i = List.of("I", "am", "a", "String");
         System.out.println(i.stream().collect(Collectors.joining(" ")));
+    }
+
+    private static void parallelStream(){
+        long time = System.currentTimeMillis();
+        System.out.println(LongStream.range(0,1000000000).sum());
+        System.out.println(System.currentTimeMillis() - time);
+
+        // Improving with parallel the time that it takes, can reduce its duration
+        long time2 = System.currentTimeMillis();
+        System.out.println(LongStream.range(0,1000000000).parallel().sum());
+        // he divides the stream in multiple paths and finally combine that results in a single path
+        System.out.println(System.currentTimeMillis() - time2);
     }
 }
