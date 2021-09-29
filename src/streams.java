@@ -19,6 +19,7 @@ public class streams {
         System.out.println(sum);
         sortingStringsFunctional(courses);
         sortingByCategory();
+        joiningStringArray();
     }
 
     private static List<Integer> doubleList(List<Integer> numbers) {
@@ -152,5 +153,9 @@ public class streams {
                                        // If various games have the same cost it brings the first
 
 
+    }
+    private static void joiningStringArray(){
+        List<String> i = List.of("I", "am", "a", "String");
+        System.out.println(i.stream().collect(Collectors.joining(" ")));
     }
 }
